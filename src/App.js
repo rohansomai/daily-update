@@ -1,24 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import TaskModal from "./components/TaskModal";
+import { Container } from "reactstrap";
+import ShowTask from "./components/ShowTask";
+import { useState } from "react";
 
 function App() {
+  const [tasksList, setTasksList] = useState([]);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      {console.log(">>>", tasksList)}
+      <div className={"float-end m-5"}>
+        <TaskModal setTasksList={setTasksList} tasksList={tasksList} />
+      </div>
+      <div className={"show-tasks-container"}>
+        {tasksList.map((item) => (
+          <ShowTask task={item} />
+        ))}
+      </div>
+    </Container>
   );
 }
 
